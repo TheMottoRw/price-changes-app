@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#B6740F</color>
+    <color name="colorPrimaryDark">#B6740F</color>
+    <color name="colorAccent">#B6740F</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="button_bgcolor">#83540F</color>
+    <color name="edit_text_bgcolor">#856D7AF1</color>
+    <color name="edit_text_green_bgcolor">#C1924C</color>
+    <color name="edit_text_color">#A8FFFFFF</color>
+    <color name="green">#B6740F</color>
+</resources>

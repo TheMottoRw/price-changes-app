@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddChanges"
+    android:orientation="vertical"
+    >
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:visibility="gone">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:layout_marginTop="100dp">
+        <ImageView
+            android:id="@+id/splashscreen"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/baseline_notifications_active_24" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textAllCaps="true"
+            android:visibility="visible"
+            android:layout_marginTop="60dp"
+            android:textColor="@color/button_bgcolor"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginLeft="30dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="@drawable/top_round_container"
+        android:layout_marginTop="100dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_new_price_change"
+            style="@style/header"
+            android:gravity="center"
+            android:textSize="22sp"/>
+        <EditText
+            android:id="@+id/changeName"
+            android:hint="@string/price_change_name"
+            android:layout_marginTop="20dp"
+            style="@style/edit_text_style"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/create"
+            android:layout_marginTop="30dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/button_bgcolor"
+            app:cornerRadius="10dp"
+            android:layout_gravity="center"
+            android:paddingVertical="15dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

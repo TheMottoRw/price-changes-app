@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Price changes</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="add_product">Add product</string>
+    <string name="update_product">Update product</string>
+    <string name="product_name">Product name</string>
+    <string name="quantity">Quantity</string>
+    <string name="add">Add</string>
+    <string name="update">Update</string>
+    <string name="price">Price</string>
+    <string name="unit">Unit</string>
+    <string name="create_new_price_change">Create new price change</string>
+    <string name="create">Create</string>
+    <string name="price_change_name">Price change name</string>
+    <string name="subscribers">Subscribers</string>
+    <string name="changes">Changes</string>
+    <string name="logout">Logout</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
