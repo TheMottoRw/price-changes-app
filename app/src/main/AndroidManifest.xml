@@ -17,6 +17,12 @@
         tools:replace="android:icon"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateSubscriber"
+            android:exported="false" />
+        <activity
+            android:name=".AddSubscriber"
+            android:exported="false" />
+        <activity
             android:name=".ViewProducts"
             android:exported="false" />
         <activity
@@ -33,8 +39,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".Splash"
             android:exported="true">

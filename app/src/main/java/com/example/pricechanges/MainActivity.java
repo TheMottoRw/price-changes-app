@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView navigationView;
     private FloatingActionButton fab;
+    private String activeFragment = "Subscribers";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,20 +35,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
-                if(itemId==R.id.action_subscribers){
-                    fab.setVisibility(View.GONE);
+                if (itemId == R.id.action_subscribers) {
+                    activeFragment = "Subscribers";
                     navigationView.getMenu().getItem(1).setChecked(true);
                     getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new SubscribersFragment()).commit();
                 }
-                if(itemId==R.id.action_changes){
-                    fab.setVisibility(View.VISIBLE);
+                if (itemId == R.id.action_changes) {
+                    activeFragment = "Changes";
                     navigationView.getMenu().getItem(0).setChecked(true);
                     getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ChangesFragment()).commit();
                 }
                 if (itemId == R.id.action_logout) {
                     Utils.logout(MainActivity.this);
                     finish();
-                    startActivity(new Intent(MainActivity.this,Login.class));
+                    startActivity(new Intent(MainActivity.this, Login.class));
                     return true;
                 }
 
@@ -57,7 +58,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,AddChanges.class));
+                if (activeFragment == "Subscribers")
+                    startActivity(new Intent(MainActivity.this, AddSubscriber.class));
+                else
+                    startActivity(new Intent(MainActivity.this, AddChanges.class));
             }
         });
 

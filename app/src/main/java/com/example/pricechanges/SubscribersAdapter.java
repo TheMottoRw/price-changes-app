@@ -3,6 +3,7 @@ package com.example.pricechanges;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,20 @@ public class SubscribersAdapter extends RecyclerView.Adapter<SubscribersAdapter.
             holder.id.setText(currentObj.getString("id"));
             holder.name.setText(currentObj.getString("name"));
             holder.phone.setText(currentObj.getString("phone"));
+            holder.lnlayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        Intent intent = new Intent(ctx, UpdateSubscriber.class);
+                        intent.putExtra("id", currentObj.getString("id"));
+                        intent.putExtra("name", currentObj.getString("name"));
+                        intent.putExtra("phone", currentObj.getString("phone"));
+                        ctx.startActivity(intent);
+                    }catch (JSONException ex){
+                        Log.d("Jsonerr",ex.getMessage());
+                    }
+                }
+            });
 
         } catch (JSONException ex) {
 
