@@ -19,12 +19,15 @@
             android:layout_height="?attr/actionBarSize" />
 
     </com.google.android.material.appbar.AppBarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/top_round_container"
+        android:layout_marginTop="50dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:background="@drawable/top_round_container"
-        android:layout_marginTop="70dp">
+        android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +39,7 @@
         <EditText
             android:id="@+id/name"
             android:hint="@string/product_name"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             style="@style/edit_text_style"/>
         <EditText
             android:id="@+id/quantity"
@@ -65,7 +68,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="@string/update"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:textSize="20sp"
             android:backgroundTint="@color/button_bgcolor"
             app:cornerRadius="10dp"
@@ -73,5 +76,6 @@
             android:paddingVertical="15dp"
             />
     </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateSubscriber"
     android:orientation="vertical"
-    >
+    tools:context=".UpdateSubscriber">
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,67 +19,75 @@
             android:layout_height="?attr/actionBarSize" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="20dp">
+
         <ImageView
             android:id="@+id/splashscreen"
             android:layout_width="100dp"
-            android:layout_height="150dp"
+            android:layout_height="50dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/baseline_notifications_active_24" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
             android:text="@string/app_name"
             android:textAllCaps="true"
-            android:visibility="visible"
-            android:layout_marginTop="60dp"
             android:textColor="@color/button_bgcolor"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginLeft="30dp"
-            />
+            android:visibility="visible" />
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:background="@drawable/top_round_container"
-        android:layout_marginTop="0dp">
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/top_round_container">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/update_subscriber"
-            style="@style/header"
-            android:gravity="center" />
-        <EditText
-            android:id="@+id/name"
-            android:hint="@string/subscriber_name"
-            android:layout_marginTop="70dp"
-            style="@style/edit_text_style"/>
-        <EditText
-            android:id="@+id/phone"
-            android:hint="@string/phone_number"
-            android:layout_marginTop="30dp"
-            style="@style/edit_text_style"
-            android:inputType="number"/>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnUpdate"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="@string/update"
-            android:layout_marginTop="50dp"
-            android:textSize="20sp"
-            android:backgroundTint="@color/button_bgcolor"
-            app:cornerRadius="10dp"
-            android:layout_gravity="center"
-            android:paddingVertical="15dp"
-            />
-    </LinearLayout>
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
+            <TextView
+                style="@style/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/update_subscriber" />
+
+            <EditText
+                android:id="@+id/name"
+                style="@style/edit_text_style"
+                android:layout_marginTop="20dp"
+                android:hint="@string/subscriber_name" />
+
+            <EditText
+                android:id="@+id/phone"
+                style="@style/edit_text_style"
+                android:layout_marginTop="30dp"
+                android:hint="@string/phone_number"
+                android:inputType="number" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnUpdate"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:backgroundTint="@color/button_bgcolor"
+                android:paddingVertical="15dp"
+                android:text="@string/update"
+                android:textSize="20sp"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

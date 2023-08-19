@@ -23,5 +23,6 @@
     <string name="phone_number">Phone number</string>
     <string name="add_new_subscriber">Add new subscriber</string>
     <string name="update_subscriber">Update subscriber</string>
+    <string name="update_price_change">Update price change</string>
 
 </resources>

@@ -36,7 +36,7 @@ public class UpdateChanges extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_changes);
+        setContentView(R.layout.activity_update_changes);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         changeName = findViewById(R.id.changeName);
