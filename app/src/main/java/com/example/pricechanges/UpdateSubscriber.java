@@ -74,12 +74,7 @@ public class UpdateSubscriber extends AppCompatActivity {
                         Log.d("Logresp", response);
                         try {
                             JSONObject res = new JSONObject(response);
-                            if(res.getBoolean("status")){
-                                Snackbar.make(name,res.getString("message"),Snackbar.LENGTH_SHORT).show();
-                            }else{
-
-                                Snackbar.make(name,"Something went wrong", Snackbar.LENGTH_SHORT).show();
-                            }
+                            Snackbar.make(name,res.getString("message"), Snackbar.LENGTH_SHORT).show();
                         } catch (JSONException ex) {
                             Log.d("Json error", ex.getMessage());
                         }

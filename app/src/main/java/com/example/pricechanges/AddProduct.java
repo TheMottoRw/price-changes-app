@@ -97,10 +97,12 @@ public class AddProduct extends AppCompatActivity {
                         try {
                             JSONObject obj = new JSONObject(response);
                             Toast.makeText(AddProduct.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
-                            name.setText("");
-                            quantity.setText("");
-                            price.setText("");
-                            unit.setText("");
+                            if(obj.getBoolean("status")) {
+                                name.setText("");
+                                quantity.setText("");
+                                price.setText("");
+                                unit.setText("");
+                            }
                         } catch (JSONException ex) {
                             Log.d("Json error", ex.getMessage());
                         }

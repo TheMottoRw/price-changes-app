@@ -45,11 +45,11 @@ public class AddChanges extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login();
+                save();
             }
         });
     }
-    private void login() {
+    private void save() {
         final String url = Utils.host + "/change";
         JSONObject body = new JSONObject();
         Log.d("URL", url);
@@ -71,6 +71,10 @@ public class AddChanges extends AppCompatActivity {
                         Log.d("Logresp", response);
                         try {
                             JSONObject res = new JSONObject(response);
+                            if(res.getBoolean("status")){
+                                changeName.setText("");
+                            }
+
                            Toast.makeText(AddChanges.this,res.getString("message"),Toast.LENGTH_SHORT).show();
                         } catch (JSONException ex) {
                             Log.d("Json error", ex.getMessage());

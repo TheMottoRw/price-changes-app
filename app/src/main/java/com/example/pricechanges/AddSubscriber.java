@@ -74,11 +74,10 @@ public class AddSubscriber extends AppCompatActivity {
                         Log.d("Logresp", response);
                         try {
                             JSONObject res = new JSONObject(response);
+                            Snackbar.make(name,res.getString("message"),Snackbar.LENGTH_SHORT).show();
                             if(res.getBoolean("status")){
-                                Snackbar.make(name,res.getString("message"),Snackbar.LENGTH_SHORT).show();
-                            }else{
-
-                                Snackbar.make(name,"Something went wrong", Snackbar.LENGTH_SHORT).show();
+                                name.setText("");
+                                phone.setText("");
                             }
                         } catch (JSONException ex) {
                             Log.d("Json error", ex.getMessage());
