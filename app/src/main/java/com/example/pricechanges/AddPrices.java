@@ -1,15 +1,13 @@
 package com.example.pricechanges;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -18,7 +16,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,40 +25,38 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UpdateSubscriber extends AppCompatActivity {
+public class AddPrices extends AppCompatActivity {
+    public MaterialButton btnSave;
+    public MaterialToolbar toolbar;
     private ProgressDialog pgdialog;
-    private EditText name,phone;
-    private Button btnUpdate;
-    private String id;
+    private EditText changeName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_subscriber);
-        name = findViewById(R.id.name);
-        phone = findViewById(R.id.phone);
+        setContentView(R.layout.activity_add_prices);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        changeName = findViewById(R.id.changeName);
         pgdialog = new ProgressDialog(this);
         pgdialog.setMessage("Loading data...");
         pgdialog.setCancelable(false);
-        btnUpdate = findViewById(R.id.btnUpdate);
-        Intent intent = getIntent();
-        id = intent.getStringExtra("id");
-        name.setText(intent.getStringExtra("name"));
-        phone.setText(intent.getStringExtra("phone"));
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
+        btnSave = findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                update();
+                save();
             }
         });
     }
-    private void update() {
-        final String url = Utils.host + "/subscriber/"+id;
+    private void save() {
+        final String url = Utils.host + "/price";
         JSONObject body = new JSONObject();
         Log.d("URL", url);
         pgdialog.show();
         try{
-            body.put("name",name.getText().toString().trim());
-            body.put("phone",phone.getText().toString().trim());
+            body.put("change_name",changeName.getText().toString().trim());
+            body.put("user_id",Utils.getUser(this,"id"));
         }catch (JSONException ex){
             Log.d("JSONErr",ex.getMessage());
         }
@@ -74,7 +71,11 @@ public class UpdateSubscriber extends AppCompatActivity {
                         Log.d("Logresp", response);
                         try {
                             JSONObject res = new JSONObject(response);
-                            Snackbar.make(name,res.getString("message"), Snackbar.LENGTH_SHORT).show();
+                            if(res.getBoolean("status")){
+                                changeName.setText("");
+                            }
+
+                           Toast.makeText(AddPrices.this,res.getString("message"),Toast.LENGTH_SHORT).show();
                         } catch (JSONException ex) {
                             Log.d("Json error", ex.getMessage());
                         }
@@ -84,7 +85,7 @@ public class UpdateSubscriber extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         pgdialog.dismiss();
-                        Toast.makeText(UpdateSubscriber.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddPrices.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                         Log.e("jsonerr", "JSON Error " + (error != null ? error.getMessage() : ""));
                     }
                 }

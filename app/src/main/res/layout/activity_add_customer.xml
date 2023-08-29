@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddSubscriber">
+    tools:context=".AddCustomer">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -62,13 +62,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/add_new_subscriber" />
+                android:text="@string/add_new_customer" />
 
             <EditText
                 android:id="@+id/name"
                 style="@style/edit_text_style"
                 android:layout_marginTop="30dp"
-                android:hint="@string/subscriber_name" />
+                android:hint="@string/customer_name" />
 
             <EditText
                 android:id="@+id/phone"

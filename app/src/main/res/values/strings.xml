@@ -14,15 +14,15 @@
     <string name="create_new_price_change">Create new price change</string>
     <string name="create">Create</string>
     <string name="price_change_name">Price change name</string>
-    <string name="subscribers">Subscribers</string>
+    <string name="customers">Customers</string>
     <string name="changes">Changes</string>
     <string name="logout">Logout</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="subscriber_name">Subscriber name</string>
+    <string name="customer_name">Customer name</string>
     <string name="phone_number">Phone number</string>
-    <string name="add_new_subscriber">Add new subscriber</string>
-    <string name="update_subscriber">Update subscriber</string>
+    <string name="add_new_customer">Add new customer</string>
+    <string name="update_customer">Update customer</string>
     <string name="update_price_change">Update price change</string>
 
 </resources>

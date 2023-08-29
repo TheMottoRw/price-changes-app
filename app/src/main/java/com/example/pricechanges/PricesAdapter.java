@@ -15,13 +15,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ChangesAdapter extends RecyclerView.Adapter<ChangesAdapter.MyViewHolder> {
+public class PricesAdapter extends RecyclerView.Adapter<PricesAdapter.MyViewHolder> {
     public LinearLayout v;
     public Context ctx;
     private JSONArray mDataset;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ChangesAdapter(Context context, JSONArray myDataset) {
+    public PricesAdapter(Context context, JSONArray myDataset) {
         super();
         mDataset = myDataset;
         ctx = context;
@@ -29,18 +29,18 @@ public class ChangesAdapter extends RecyclerView.Adapter<ChangesAdapter.MyViewHo
 
     // Create new views (invoked by the layout manager)
     @Override
-    public ChangesAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                              int viewType) {
+    public PricesAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+                                                         int viewType) {
         // create a new view
         v = (LinearLayout) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_changes, parent, false);
-        ChangesAdapter.MyViewHolder vh = new ChangesAdapter.MyViewHolder(v);
+                .inflate(R.layout.recycler_prices, parent, false);
+        PricesAdapter.MyViewHolder vh = new PricesAdapter.MyViewHolder(v);
         return vh;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(final ChangesAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(final PricesAdapter.MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         try {
@@ -64,7 +64,7 @@ public class ChangesAdapter extends RecyclerView.Adapter<ChangesAdapter.MyViewHo
             holder.lnlayout.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    Intent intent = new Intent(ctx,UpdateChanges.class);
+                    Intent intent = new Intent(ctx, UpdatePrices.class);
                     try {
                         intent.putExtra("id",currentObj.getString("id"));
                         intent.putExtra("change_name",currentObj.getString("change_name"));

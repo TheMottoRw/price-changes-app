@@ -17,19 +17,19 @@
         tools:replace="android:icon"
         tools:targetApi="31">
         <activity
-            android:name=".UpdateSubscriber"
+            android:name=".UpdateCustomer"
             android:exported="false" />
         <activity
-            android:name=".AddSubscriber"
+            android:name=".AddCustomer"
             android:exported="false" />
         <activity
             android:name=".ViewProducts"
             android:exported="false" />
         <activity
-            android:name=".UpdateChanges"
+            android:name=".UpdatePrices"
             android:exported="false" />
         <activity
-            android:name=".AddChanges"
+            android:name=".AddPrices"
             android:exported="false" />
         <activity
             android:name=".AddProduct"

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView navigationView;
     private FloatingActionButton fab;
-    private String activeFragment = "Subscribers";
+    private String activeFragment = "Customers";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         navigationView = findViewById(R.id.navigation);
         fab = findViewById(R.id.fab);
-        getSupportFragmentManager().beginTransaction().add(R.id.frameLayout, new ChangesFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frameLayout, new PricesFragment()).commit();
 
 
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -36,14 +36,14 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
                 if (itemId == R.id.action_subscribers) {
-                    activeFragment = "Subscribers";
+                    activeFragment = "Customers";
                     navigationView.getMenu().getItem(1).setChecked(true);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new SubscribersFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new CustomersFragment()).commit();
                 }
                 if (itemId == R.id.action_changes) {
-                    activeFragment = "Changes";
+                    activeFragment = "Prices";
                     navigationView.getMenu().getItem(0).setChecked(true);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ChangesFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new PricesFragment()).commit();
                 }
                 if (itemId == R.id.action_logout) {
                     Utils.logout(MainActivity.this);
@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (activeFragment == "Subscribers")
-                    startActivity(new Intent(MainActivity.this, AddSubscriber.class));
+                if (activeFragment.equals("Customers"))
+                    startActivity(new Intent(MainActivity.this, AddCustomer.class));
                 else
-                    startActivity(new Intent(MainActivity.this, AddChanges.class));
+                    startActivity(new Intent(MainActivity.this, AddPrices.class));
             }
         });
 

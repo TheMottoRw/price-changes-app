@@ -1,7 +1,6 @@
 package com.example.pricechanges;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +18,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,43 +26,37 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UpdateChanges extends AppCompatActivity {
-    public MaterialButton btnSave;
+public class AddCustomer extends AppCompatActivity {
+    public MaterialButton btnCreate;
     public MaterialToolbar toolbar;
     private ProgressDialog pgdialog;
-    private EditText changeName;
-    private String changeId;
+    private EditText name,phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_changes);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        changeName = findViewById(R.id.changeName);
+        setContentView(R.layout.activity_add_customer);
+        name = findViewById(R.id.name);
+        phone = findViewById(R.id.phone);
         pgdialog = new ProgressDialog(this);
-        pgdialog.setMessage("Updating data...");
+        pgdialog.setMessage("Loading data...");
         pgdialog.setCancelable(false);
-        btnSave = findViewById(R.id.btnSave);
-
-        Intent intent = getIntent();
-        changeId = intent.getStringExtra("id");
-        changeName.setText(intent.getStringExtra("change_name"));
-        btnSave.setOnClickListener(new View.OnClickListener() {
+        btnCreate = findViewById(R.id.btnCreate);
+        btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                update();
+                save();
             }
         });
     }
-    private void update() {
-        final String url = Utils.host + "/change/"+changeId;
+    private void save() {
+        final String url = Utils.host + "/customer";
         JSONObject body = new JSONObject();
         Log.d("URL", url);
         pgdialog.show();
         try{
-            body.put("change_name",changeName.getText().toString().trim());
-            body.put("user_id",Utils.getUser(this,"id"));
+            body.put("name",name.getText().toString().trim());
+            body.put("phone",phone.getText().toString().trim());
         }catch (JSONException ex){
             Log.d("JSONErr",ex.getMessage());
         }
@@ -77,7 +71,11 @@ public class UpdateChanges extends AppCompatActivity {
                         Log.d("Logresp", response);
                         try {
                             JSONObject res = new JSONObject(response);
-                            Toast.makeText(UpdateChanges.this,res.getString("message"),Toast.LENGTH_SHORT).show();
+                            Snackbar.make(name,res.getString("message"),Snackbar.LENGTH_SHORT).show();
+                            if(res.getBoolean("status")){
+                                name.setText("");
+                                phone.setText("");
+                            }
                         } catch (JSONException ex) {
                             Log.d("Json error", ex.getMessage());
                         }
@@ -87,7 +85,7 @@ public class UpdateChanges extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         pgdialog.dismiss();
-                        Toast.makeText(UpdateChanges.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddCustomer.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                         Log.e("jsonerr", "JSON Error " + (error != null ? error.getMessage() : ""));
                     }
                 }

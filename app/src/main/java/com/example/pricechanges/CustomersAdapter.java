@@ -16,13 +16,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SubscribersAdapter extends RecyclerView.Adapter<SubscribersAdapter.MyViewHolder> {
+public class CustomersAdapter extends RecyclerView.Adapter<CustomersAdapter.MyViewHolder> {
     public LinearLayout v;
     public Context ctx;
     private JSONArray mDataset;
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public SubscribersAdapter(Context context, JSONArray myDataset) {
+    public CustomersAdapter(Context context, JSONArray myDataset) {
         super();
         mDataset = myDataset;
         ctx = context;
@@ -30,18 +30,18 @@ public class SubscribersAdapter extends RecyclerView.Adapter<SubscribersAdapter.
 
     // Create new views (invoked by the layout manager)
     @Override
-    public SubscribersAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                        int viewType) {
+    public CustomersAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+                                                            int viewType) {
         // create a new view
         v = (LinearLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_users, parent, false);
-        SubscribersAdapter.MyViewHolder vh = new SubscribersAdapter.MyViewHolder(v);
+        CustomersAdapter.MyViewHolder vh = new CustomersAdapter.MyViewHolder(v);
         return vh;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(final SubscribersAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(final CustomersAdapter.MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         try {
@@ -53,7 +53,7 @@ public class SubscribersAdapter extends RecyclerView.Adapter<SubscribersAdapter.
                 @Override
                 public void onClick(View view) {
                     try {
-                        Intent intent = new Intent(ctx, UpdateSubscriber.class);
+                        Intent intent = new Intent(ctx, UpdateCustomer.class);
                         intent.putExtra("id", currentObj.getString("id"));
                         intent.putExtra("name", currentObj.getString("name"));
                         intent.putExtra("phone", currentObj.getString("phone"));

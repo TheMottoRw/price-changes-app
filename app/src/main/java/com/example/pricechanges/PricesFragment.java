@@ -27,13 +27,13 @@ import org.json.JSONException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChangesFragment extends Fragment {
+public class PricesFragment extends Fragment {
     private Context context;
     private LinearLayoutManager lnyManager;
     private RecyclerView recyclerView;
     private ProgressDialog pgdialog;
 
-    public ChangesFragment() {
+    public PricesFragment() {
         // Required empty public constructor
     }
 
@@ -41,7 +41,7 @@ public class ChangesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_subscribers, container, false);
+        View view = inflater.inflate(R.layout.fragment_prices, container, false);
         context = view.getContext();
         lnyManager = new LinearLayoutManager(context);
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -54,7 +54,7 @@ public class ChangesFragment extends Fragment {
     }
 
     private void loadUsers() {
-        final String url = Utils.host + "/changes";
+        final String url = Utils.host + "/prices";
         pgdialog.show();
         Log.d("URL", url);
 //        tvLoggingIn.setVisibility(View.VISIBLE);
@@ -70,7 +70,7 @@ public class ChangesFragment extends Fragment {
                         try {
                             JSONArray arr = new JSONArray(response);
                             if (arr.length() > 0) {
-                                ChangesAdapter adapter = new ChangesAdapter(context, arr);
+                                PricesAdapter adapter = new PricesAdapter(context, arr);
                                 recyclerView.setAdapter(adapter);
                             }
                         } catch (JSONException ex) {

@@ -1,6 +1,7 @@
 package com.example.pricechanges;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,32 +26,37 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddChanges extends AppCompatActivity {
+public class UpdatePrices extends AppCompatActivity {
     public MaterialButton btnSave;
     public MaterialToolbar toolbar;
     private ProgressDialog pgdialog;
     private EditText changeName;
+    private String changeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_changes);
+        setContentView(R.layout.activity_update_prices);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         changeName = findViewById(R.id.changeName);
         pgdialog = new ProgressDialog(this);
-        pgdialog.setMessage("Loading data...");
+        pgdialog.setMessage("Updating data...");
         pgdialog.setCancelable(false);
         btnSave = findViewById(R.id.btnSave);
+
+        Intent intent = getIntent();
+        changeId = intent.getStringExtra("id");
+        changeName.setText(intent.getStringExtra("change_name"));
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                save();
+                update();
             }
         });
     }
-    private void save() {
-        final String url = Utils.host + "/change";
+    private void update() {
+        final String url = Utils.host + "/price/"+changeId;
         JSONObject body = new JSONObject();
         Log.d("URL", url);
         pgdialog.show();
@@ -71,11 +77,7 @@ public class AddChanges extends AppCompatActivity {
                         Log.d("Logresp", response);
                         try {
                             JSONObject res = new JSONObject(response);
-                            if(res.getBoolean("status")){
-                                changeName.setText("");
-                            }
-
-                           Toast.makeText(AddChanges.this,res.getString("message"),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdatePrices.this,res.getString("message"),Toast.LENGTH_SHORT).show();
                         } catch (JSONException ex) {
                             Log.d("Json error", ex.getMessage());
                         }
@@ -85,7 +87,7 @@ public class AddChanges extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         pgdialog.dismiss();
-                        Toast.makeText(AddChanges.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UpdatePrices.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                         Log.e("jsonerr", "JSON Error " + (error != null ? error.getMessage() : ""));
                     }
                 }
